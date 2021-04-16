@@ -1,10 +1,10 @@
-package com.example.HelloGod;
+package com.memphis.guestbook;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HelloGodApplicationTests {
+class appTests {
 
 	@Test
 	void contextLoads() {
