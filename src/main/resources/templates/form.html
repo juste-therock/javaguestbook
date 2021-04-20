@@ -10,15 +10,19 @@
 </head>
 <body>
 <h4>Fill in the form please</h4>
-<form action="#" th:action="@{/}" th:object="${messageForm}" method="post">
-
-        <p>First Name: </p>
-            <input type="text" th:field="*{firstName}" />
-            <p>Last Name: </p><input type="text" th:field="*{lastName}" />
-            <p>Email: </p><input type="email" th:field="*{email}" />
-            <p>Age: </p><input type="integer" th:field="*{age}" />
-    <p>Message: <input type="text" th:field="*{content}" /></p>
+<form action="#" th:action="@{/}" th:object="${message}" method="post">
+    <p>First Name: </p><input type="text" th:field="*{firstName}" />
+    <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></td>
+    <p>Last Name: </p><input type="text" th:field="*{lastName}" />
+    <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></td>
+    <p>Email: </p><input type="email" th:field="*{email}" />
+    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+    <p>Age: </p><input type="number" th:field="*{age}" />
+    <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></td>
+    <p>Message: </p><input type="text" th:field="*{content}" />
+    <td th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></td>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
+<p> &copy; 2021- Juste Memphis Ahouansou </p>
 </body>
 </html>
