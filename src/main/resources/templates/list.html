@@ -1,20 +1,43 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta  charset="UTF-8">
+    <title>JavaGuestBook Messages list page</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+<div>
+    <h4>The Memphis' GuestBook</h4>
+    <h5>Java Thymeleaf-based Guestbook with pagination</h5>
+    <nav>
+        <ul>
+            <li><a href="/" title="Homepage">Home</a></li>
+            <li><a href="/list" title="Messages">Messages</a></li>
+        </ul>
+    </nav>
+</div>
 <table>
     <thead>
     <tr>
-        <th> Id</th>
-        <th> First Name </th>
-        <th> Last Name </th>
-        <th> Email </th>
-        <th> Age </th>
-        <th> Content </th>
+        <th>Full Name</th>
+        <th>Subject</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Content</th>
+        <th>Rating</th>
+        <th>Date and Time</th>
     </tr>
     </thead>
     <tbody>
@@ -22,12 +45,14 @@
         <td colspan="2"> No Message Available </td>
     </tr> */-->
     <tr th:each="message : ${messages}">
-        <td><span th:text="${message.id}"> Id </span></td>
-        <td><span th:text="${message.firstName}"> First Name </span></td>
-        <td><span th:text="${message.lastName}"> Last Name </span></td>
-        <td><span th:text="${message.email}"> Email </span></td>
-        <td><span th:text="${message.age}"> Age </span></td>
-        <td><span th:text="${message.content}"> Content </span></td>
+        <td><span th:text="${message.firstName + ' ' + message.lastName}"></span></td>
+        <td><span th:text="${message.subject}"></span></td>
+        <td><span th:text="${message.email}"></span></td>
+        <td><span th:text="${message.age}"></span></td>
+        <td><span th:text="${message.gender}"></span></td>
+        <td><span th:text="${message.content}"></span></td>
+        <td><span th:text="${message.rating}"></span></td>
+        <td><span th:text="${message.sentTime}"></span></td>
     </tr>
     </tbody>
 </table>

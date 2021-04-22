@@ -1,15 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="https://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<title>Getting Started: Handling Form Submission</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta  charset="UTF-8">
+    <title>JavaGuestBook Homepage</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
-<h4>Fill in the form please</h4>
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+<div><h4>The Memphis' GuestBook</h4>
+<h5>Java Thymeleaf-based Guestbook with pagination</h5>
+<nav>
+    <ul>
+        <li><a href="/" title="Homepage">Home</a></li>
+        <li><a href="/list" title="Messages">Messages</a></li>
+    </ul>
+</nav>
+</div>
+<h6>Fill in the form please</h6>
 <form action="#" th:action="@{/}" th:object="${message}" method="post">
     <p>First Name: </p><input type="text" th:field="*{firstName}" />
     <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></td>
@@ -17,11 +34,22 @@
     <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></td>
     <p>Email: </p><input type="email" th:field="*{email}" />
     <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+    <p>Subject: </p><input type="text" th:field="*{subject}" />
     <p>Age: </p><input type="number" th:field="*{age}" />
     <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></td>
     <p>Message: </p><input type="text" th:field="*{content}" />
     <td th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></td>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <p>Rate me:
+    <select th:field="*{rating}">
+        <option input type="number" th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}" th:selected="${i==5}">
+        </option>
+    </select></p>
+    <p>Gender:
+        <input type="radio" th:field="*{gender}" th:value="Male">
+        <label th:for="${#ids.prev('gender')}">Male</label>
+        <input type="radio" th:field="*{gender}" th:value="Female">
+        <label th:for="${#ids.prev('gender')}">Female</label></p>
+     <p><input type="submit" value="Send message" /> <input type="reset" value="Cancel" /></p>
 </form>
 <p> &copy; 2021- Juste Memphis Ahouansou </p>
 </body>
