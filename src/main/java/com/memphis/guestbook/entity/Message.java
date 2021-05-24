@@ -1,12 +1,11 @@
-package com.memphis.guestbook;
+package com.memphis.guestbook.entity;
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "guest_message")
+
 public class Message {
 
     @Id
@@ -48,18 +47,6 @@ public class Message {
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date sentTime;
-    //private final SimpleDateFormat timeformat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-    //private java.util.Date parseTimestamp(String timestamp) {
-     //   try {
-     //       return timeformat.parse(timestamp);
-      //  } catch (ParseException e) {
-      //      throw new IllegalArgumentException(e);
-     //   }
-  //  }
-
-    //Mapping TimeStamp using LocalDateTime
-    // @Column(name = "sentTime")
-    //private LocalDateTime sentTime;
 
     public Integer getId() {return id; }
     public void setId(Integer id) { this.id = id; }
@@ -86,10 +73,10 @@ public class Message {
     public void setGender(String gender) { this.gender = gender; }
 
     public Integer getRating() { return rating;}
-    public void setRating() {this.rating = rating;}
+    public void setRating(Integer rating) {this.rating = rating;}
 
     public Date getSentTime() { return sentTime; }
-    public void setRating(Integer rating) { this.rating = rating; }
+    public void setSentTime(Date sentTime) { this.sentTime = sentTime; }
 
     @Override
     public String toString() {

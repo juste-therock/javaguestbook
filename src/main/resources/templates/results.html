@@ -3,34 +3,54 @@
 <head>
     <meta  charset="UTF-8">
     <title>JavaGuestBook</title>
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css} "/>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col">
-
-        </div>
-    </div>
-</div>
-
 <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
-<div>
-    <h4>The Memphis' GuestBook</h4>
-    <h5>Java Thymeleaf-based Guestbook with pagination</h5>
-    <nav>
-        <ul>
-            <li><a href="/" title="Homepage">Home</a></li>
-            <li><a href="/list" title="Messages">Messages</a></li>
-        </ul>
-    </nav>
-</div>
-<h3>Result</h3>
-<p>Congratulations! You are smart enough to sign up for this site.</p>
-<a href="/">Submit another message</a></br>
-<a href="/list">Or see the messages list</a>
-<p> &copy; 2021- Juste Memphis Ahouansou </p>
+<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Memphis' GuestBook</a>
+            <a class="navbar-brand" href="/" title="Homepage">Home</a>
+            <a class="navbar-brand" href="/list" title="Messages">Messages</a>
+            <a class="navbar-brand" href="#">About me</a>
+        </div>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search messages" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+    <div class="container">
+     <div>
+        <h4>The Memphis' GuestBook</h4>
+        <h5>Java Thymeleaf-based Guestbook with pagination</h5>
+    </div>
+       <h3>Result</h3>
+    <p>Congratulations! You are smart enough to sign up for this site.</p>
+    <a href="/">Submit another message</a>
+</div><br /><br />
+<!-- Footer -->
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!-- Section: Text -->
+        <section class="mb-4">
+            <p>
+                This java guestbook with the Thymeleaf Template Engine has been possible thanks to
+                Sir Arcadius AHOUANSOU a Software Engineer at SKY, CEO of Menelic Ltd, London UK.
+                Arcadius Ahouansou is my trainer.
+            </p>
+        </section>
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2021 Copyright: Juste Memphis AHOUANSOU,
+            <a style="text-color:blue;" class="text-white" href="https://menelic.com/"><font color="blue">Menelic Ltd</font></a>
+        </div></div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
 </body>
 </html>

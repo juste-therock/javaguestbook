@@ -19,7 +19,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'mysql:mysql-connector-java:8.0.22'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compile group: 'org.webjars', name: 'bootstrap', version: '4.0.0-2'
+	compile group: 'org.webjars', name: 'bootstrap', version: '4.5.0'
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.3'
+	// https://mvnrepository.com/artifact/net.sf.supercsv/super-csv
+	implementation group: 'net.sf.supercsv', name: 'super-csv', version: '2.4.0'
+
+
 }
 
 test {

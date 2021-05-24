@@ -1,61 +1,85 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta  charset="UTF-8">
-    <title>JavaGuestBook Messages list page</title>
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <title>Messages List</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css} "/>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col">
-
-        </div>
-    </div>
-</div>
-
 <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
 <div>
-    <h4>The Memphis' GuestBook</h4>
-    <h5>Java Thymeleaf-based Guestbook with pagination</h5>
-    <nav>
-        <ul>
-            <li><a href="/" title="Homepage">Home</a></li>
-            <li><a href="/list" title="Messages">Messages</a></li>
-        </ul>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Memphis' GuestBook</a>
+                <a class="navbar-brand" href="/" title="Homepage">Home</a>
+                <a class="navbar-brand" href="/list" title="Messages">Messages</a>
+                <a class="navbar-brand" href="#">About me</a>
+            </div>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search messages" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <a th:href="@{'/createCsv'}"><button class="btn btn-success navbar-btn" >Download CSV</button></a>
+        </div>
     </nav>
+    <div class="container-fluid"><br />
+        <h5>Here goes the received messages list:
+            <a th:href="@{'/createJson'}" style="float:right;"><button class="btn btn-success navbar-btn" >Download Json</button></a>
+        </h5>
+        <div style="margin-top:25px;">
+            <table class="table table-bordered table-striped">
+               <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Subject</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Content</th>
+                        <th>Rating</th>
+                        <th>Date/Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--/* <tr th:if="${message.empty}">
+                        <td> No Message Available </td>
+                    </tr> */-->
+                    <tr th:each="message : ${messages}">
+                        <td th:text="${message.firstName + ' ' + message.lastName}"></td>
+                        <td th:text="${message.subject}"></td>
+                        <td th:text="${message.email}"></td>
+                        <td th:text="${message.age}"></td>
+                        <td th:text="${message.gender}"></td>
+                        <td th:text="${message.content}"></td>
+                        <td th:text="${message.rating}"></td>
+                        <td th:text="${message.sentTime}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+        </div></div>
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!-- Section: Text -->
+            <section class="mb-4">
+                <p>
+                    This java guestbook with the Thymeleaf Template Engine has been possible thanks to
+                    Sir Arcadius AHOUANSOU a Software Engineer at SKY, CEO of Menelic Ltd, London UK.
+                    Arcadius Ahouansou is my trainer.
+                </p>
+            </section>
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2021 Copyright: Juste Memphis AHOUANSOU,
+                <a style="text-color:blue;" class="text-white" href="https://menelic.com/"><font color="blue">Menelic Ltd</font></a>
+            </div></div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
 </div>
-<table>
-    <thead>
-    <tr>
-        <th>Full Name</th>
-        <th>Subject</th>
-        <th>Email</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Content</th>
-        <th>Rating</th>
-        <th>Date and Time</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!--/* <tr th:if="${message.empty}">
-        <td colspan="2"> No Message Available </td>
-    </tr> */-->
-    <tr th:each="message : ${messages}">
-        <td><span th:text="${message.firstName + ' ' + message.lastName}"></span></td>
-        <td><span th:text="${message.subject}"></span></td>
-        <td><span th:text="${message.email}"></span></td>
-        <td><span th:text="${message.age}"></span></td>
-        <td><span th:text="${message.gender}"></span></td>
-        <td><span th:text="${message.content}"></span></td>
-        <td><span th:text="${message.rating}"></span></td>
-        <td><span th:text="${message.sentTime}"></span></td>
-    </tr>
-    </tbody>
-</table>
-<p> &copy; 2021- Juste Memphis Ahouansou </p>
 </body>
 </html>

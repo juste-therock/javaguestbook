@@ -1,56 +1,100 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta  charset="UTF-8">
-    <title>JavaGuestBook Homepage</title>
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+<title>JavaGuestBook Homepage</title>
+ <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css} "/>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col">
-
-        </div>
-    </div>
-</div>
-
 <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
-<div><h4>The Memphis' GuestBook</h4>
-<h5>Java Thymeleaf-based Guestbook with pagination</h5>
-<nav>
-    <ul>
-        <li><a href="/" title="Homepage">Home</a></li>
-        <li><a href="/list" title="Messages">Messages</a></li>
-    </ul>
+<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Memphis' GuestBook</a>
+            <a class="navbar-brand" href="/" title="Homepage">Home</a>
+            <a class="navbar-brand" href="/list" title="Messages">Messages</a>
+            <a class="navbar-brand" href="#">About me</a>
+        </div>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search messages" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
 </nav>
+<div class="container"><br />
+    <h5>Fill in the form please</h5><br />
+    <form th:action="@{/results}" th:object="${message}" method="post">
+        <div class="form-row">
+            <div class="col">
+                <input type="text" th:field="*{firstName}" class="form-control" placeholder="First Name...">
+                <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></td>
+            </div>
+            <div class="col">
+                <input type="text" th:field="*{lastName}" class="form-control" placeholder="Last Name...">
+                <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></td>
+            </div>
+            <div class="col">
+                <input type="email" th:field="*{email}" class="form-control" placeholder="Email...">
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+            </div>
+
+        </div>
+        <br />
+        <div class="form-row">
+            <div class="col">
+                <input type="text" th:field="*{subject}" class="form-control" placeholder="Subject...">
+            </div>
+            <div class="col">
+                <input type="number" th:field="*{age}" class="form-control" placeholder="Age...">
+                <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></td>
+            </div>
+            <div class="col">
+                <select class="form-control" style="width:100px;">
+                    <option hidden>Rating:</option>
+                    <option input type="number" th:field="*{rating}"  class="form-control"
+                            th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}" th:selected="${i==5}">
+                    </option>
+                </select>
+            </div>
+            <div class="col">
+                <p>Gender:
+                    <input type="radio" th:field="*{gender}" th:value="Male">
+                    <label th:for="${#ids.prev('gender')}">Male</label>
+                    <input type="radio" th:field="*{gender}" th:value="Female">
+                    <label th:for="${#ids.prev('gender')}">Female</label>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Message</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  th:field="*{content}"></textarea>
+            <td th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></td>
+        </div>
+        <p><button type="submit" class="btn btn-primary">Send Message</button> <button type="reset" class="btn btn-primary">Cancel</button></p>
+
+    </form>
 </div>
-<h6>Fill in the form please</h6>
-<form action="#" th:action="@{/}" th:object="${message}" method="post">
-    <p>First Name: </p><input type="text" th:field="*{firstName}" />
-    <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></td>
-    <p>Last Name: </p><input type="text" th:field="*{lastName}" />
-    <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></td>
-    <p>Email: </p><input type="email" th:field="*{email}" />
-    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
-    <p>Subject: </p><input type="text" th:field="*{subject}" />
-    <p>Age: </p><input type="number" th:field="*{age}" />
-    <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></td>
-    <p>Message: </p><input type="text" th:field="*{content}" />
-    <td th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></td>
-    <p>Rate me:
-    <select th:field="*{rating}">
-        <option input type="number" th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}" th:selected="${i==5}">
-        </option>
-    </select></p>
-    <p>Gender:
-        <input type="radio" th:field="*{gender}" th:value="Male">
-        <label th:for="${#ids.prev('gender')}">Male</label>
-        <input type="radio" th:field="*{gender}" th:value="Female">
-        <label th:for="${#ids.prev('gender')}">Female</label></p>
-     <p><input type="submit" value="Send message" /> <input type="reset" value="Cancel" /></p>
-</form>
-<p> &copy; 2021- Juste Memphis Ahouansou </p>
+<!-- Footer -->
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!-- Section: Text -->
+        <section class="mb-4">
+            <p>
+                This java guestbook with the Thymeleaf Template Engine has been possible thanks to
+                Sir Arcadius AHOUANSOU a Software Engineer at SKY, CEO of Menelic Ltd, London UK.
+                Arcadius Ahouansou is my trainer.
+            </p>
+        </section>
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2021 Copyright: Juste Memphis AHOUANSOU,
+            <a style="text-color:blue;" class="text-white" href="https://menelic.com/"><font color="blue">Menelic Ltd</font></a>
+        </div></div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
 </body>
 </html>
